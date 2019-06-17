@@ -1,0 +1,26 @@
+version: '3'
+services:
+  mousser-backnode:
+    ports:
+      - '1522:80'
+    image: moussersite-backnode-image
+    environment:
+      NODE_ENV: 'development'
+    volumes:
+      - ../src:/www/src
+    networks:
+      - mousserNet
+    command: 'yarn run dev'
+  mousserdb:
+    image: mongo
+    restart: 'always'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 'root'
+      MONGO_INITDB_ROOT_PASSWORD: 't00r'
+    ports:
+      - '28018:27017'
+    volumes:
+      - ./_mongodb:/data/db
+      - ./_mongodb_config:/data/configdb
+networks:
+  mousserNet:
