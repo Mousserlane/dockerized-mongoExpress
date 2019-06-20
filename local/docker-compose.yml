@@ -9,18 +9,29 @@ services:
     volumes:
       - ../src:/www/src
     networks:
-      - mousserNet
+      - api-net
+      - db-net # => We need to manually create and declare our external network so our containers can communicate
     command: 'yarn run dev'
   mousserdb:
     image: mongo
-    restart: 'always'
+    # restart: 'always'
     environment:
-      MONGO_INITDB_ROOT_USERNAME: 'root'
-      MONGO_INITDB_ROOT_PASSWORD: 't00r'
+      # FOR AUTH, haven't got these to work yet
+      # MONGO_INITDB_ROOT_USERNAME: 'root'
+      # MONGO_INITDB_ROOT_PASSWORD: 't00r'
+      MONGO_INITDB_DATABASE: 'site_document'
+    # expose:
+    #   - 27017
     ports:
-      - '28018:27017'
+      - '27017:27017'
     volumes:
       - ./_mongodb:/data/db
       - ./_mongodb_config:/data/configdb
+    networks:
+      - db-net
 networks:
-  mousserNet:
+  api-net:
+  db-net:
+    external: true
+    # This will return not found if we dont create it
+    # via docker network create <network-name>

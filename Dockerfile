@@ -1,7 +1,7 @@
 FROM node:11-alpine
 
 COPY package.json /www/package.json
-RUN cd /www yarn install
+RUN cd /www; yarn install
 
 COPY . /www
 
