@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 // Routes
 BiographyController = require('./controllers/biographyController');
 ExperienceController = require('./controllers/experienceController');
+KnowledgeController = require('./controllers/knowledgeController');
+SkillsetController = require('./controllers/skillsetController');
 
 const app = express();
 app.use(bodyParser.json());
@@ -40,6 +42,7 @@ db.on('error', e => {
 db.once('connected', function() {
   // Run our main  application
 
+  // NOTE Might want to move these methods someplace else
   app.get('/', (req, res) => {
     res.send('There is nothing to see here');
   });
@@ -81,6 +84,43 @@ db.once('connected', function() {
       }
       res.status(200).json(exp);
     });
+  });
+});
+
+app.get('/api/knowledge', (req, res) => {
+  KnowledgeController.getKnowledge((err, knowledge) => {
+    if (err) {
+      throw err;
+    }
+    res.status(200).json(knowledge);
+  });
+});
+
+app.post('/api/knowledge', (req, res) => {
+  var knowledge = req.body;
+  KnowledgeController.addKnowledge(knowledge, (err, knowledge) => {
+    if (err) {
+      throw err; // Create middleware for error
+    }
+    res.status(200).json(knowledge);
+  });
+});
+
+app.get('/api/skillset', (req, res) => {
+  SkillsetController.getSkillset((err, skillset) => {
+    if (err) {
+      throw err;
+    }
+    res.status(200).json(skillset);
+  });
+});
+
+app.post('/api/skillset', (req, res) => {
+  var skillset = req.body;
+  SkillsetController.addSkillset(skillset, (err, skillset) => {
+    if (err) throw err;
+
+    res.status(200).json(skillset);
   });
 });
 
