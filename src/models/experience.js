@@ -21,4 +21,24 @@ const experienceSchema = mongoose.Schema({
   }
 });
 
+// Method definition
+experienceSchema.method({
+  _getExperiences
+});
+
+// Method Hoisting => To reduce cluttering
+// But we should look for better alternatives
+function _getExperiences(limit) {
+  return new Promise((resolve, reject) => {
+    Experiences.find((err, exp) => {
+      if (err) {
+        console.log('hell');
+        reject(err);
+      } else {
+        resolve('exp');
+      }
+    }).limit(limit);
+  });
+}
+
 Experiences = module.exports = mongoose.model('Experiences', experienceSchema);

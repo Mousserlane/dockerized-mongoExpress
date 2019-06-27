@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+const { endpoints } = require('./controllers');
 // Routes
 BiographyController = require('./controllers/biographyController');
 ExperienceController = require('./controllers/experienceController');
@@ -42,6 +43,8 @@ db.on('error', e => {
 db.once('connected', function() {
   // Run our main  application
 
+  endpoints(app);
+
   // NOTE Might want to move these methods someplace else
   app.get('/', (req, res) => {
     res.send('There is nothing to see here');
@@ -67,14 +70,14 @@ db.once('connected', function() {
     });
   });
 
-  app.get('/api/experiences', (req, res) => {
-    ExperienceController.getExperience((err, exp) => {
-      if (err) {
-        throw err; // Might want to create an abstraction on this one
-      }
-      res.json(exp);
-    }, 50);
-  });
+  // app.get('/api/experiences', (req, res) => {
+  //   ExperienceController.getExperience((err, exp) => {
+  //     if (err) {
+  //       throw err; // Might want to create an abstraction on this one
+  //     }
+  //     res.json(exp);
+  //   }, 50);
+  // });
 
   app.post('/api/experiences', (req, res) => {
     var experience = req.body;
