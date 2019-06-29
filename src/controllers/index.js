@@ -1,20 +1,9 @@
-const biographyController = require('./biographyController');
-const experienceController = require('./experienceController');
-const knowledgeController = require('./knowledgeController');
-const skillsetController = require('./skillsetController');
-
-const Experiences = require('../models/experience');
+const biography = require('./biography/biographyController');
+const experience = require('./experience/experienceController');
+const knowledge = require('./knowledge/knowledgeController');
+const skillset = require('./skillset/skillsetController');
 
 module.exports.endpoints = mongoApp => {
-  mongoApp.use('/api/experience', async (req, res) => {
-    const expInstance = new Experiences();
-    const exp = await expInstance._getExperiences(50);
-    res.json(exp);
-    // experienceController.getExperience((err, exp) => {
-    //   if (err) {
-    //     throw err; // Might want to create an abstraction on this one
-    //   }
-    //   res.json(exp);
-    // }, 50);
-  });
+  mongoApp.use('/api', experience.get);
+  mongoApp.use('/api', experience.add);
 };

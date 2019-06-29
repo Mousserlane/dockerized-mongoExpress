@@ -1,4 +1,4 @@
-const Skillset = require('../models/skillset');
+const Skillset = require('../../models/skillset');
 
 // Basic GET functionality
 module.exports.getSkillset = (callback, limit) => {

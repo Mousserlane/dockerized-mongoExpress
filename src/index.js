@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 
 const { endpoints } = require('./controllers');
 // Routes
-BiographyController = require('./controllers/biographyController');
-ExperienceController = require('./controllers/experienceController');
-KnowledgeController = require('./controllers/knowledgeController');
-SkillsetController = require('./controllers/skillsetController');
+BiographyController = require('./controllers/biography/biographyController');
+ExperienceController = require('./controllers/experience/experienceController');
+KnowledgeController = require('./controllers/knowledge/knowledgeController');
+SkillsetController = require('./controllers/skillset/skillsetController');
 
 const app = express();
 app.use(bodyParser.json());

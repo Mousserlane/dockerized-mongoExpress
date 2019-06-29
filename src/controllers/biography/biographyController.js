@@ -1,4 +1,4 @@
-const Biography = require('../models/bio');
+const Biography = require('../../models/bio');
 
 // Basic GET functionality
 module.exports.getBiography = callback => {

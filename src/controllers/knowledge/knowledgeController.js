@@ -1,4 +1,4 @@
-const Knowledge = require('../models/knowledge');
+const Knowledge = require('../../models/knowledge');
 
 // Basic GET functionality
 module.exports.getKnowledge = (callback, limit) => {

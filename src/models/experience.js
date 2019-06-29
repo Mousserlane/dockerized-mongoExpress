@@ -23,21 +23,36 @@ const experienceSchema = mongoose.Schema({
 
 // Method definition
 experienceSchema.method({
-  _getExperiences
+  // Insert instance methods here
 });
+
+experienceSchema.statics = {
+  getExperiences
+};
 
 // Method Hoisting => To reduce cluttering
 // But we should look for better alternatives
-function _getExperiences(limit) {
+function getExperiences(limit) {
   return new Promise((resolve, reject) => {
-    Experiences.find((err, exp) => {
+    Experiences.find((err, obj) => {
       if (err) {
-        console.log('hell');
+        console.log('error:', err);
         reject(err);
       } else {
-        resolve('exp');
+        resolve(obj);
       }
     }).limit(limit);
+  });
+}
+
+function postExperience(data) {
+  return new Promise((resolve, reject) => {
+    Experiences.create(data, (err, response) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(response);
+    });
   });
 }
 
