@@ -19,15 +19,5 @@ const add = router.post('/biography', async (req, res, _) => {
     res.status(500).send({ message: 'Error while posting data', error });
   }
 });
-// Basic GET functionality
-// module.exports.getBiography = callback => {
-//   Biography.findOne({ type: 'biography' }, callback); // Since there is no dynamic data fetching need for this, I think
-//   // we can just hard code the type here
-// };
-
-// // Basic POST functionality
-// module.exports.addBiography = (bioData, callback) => {
-//   Biography.create(bioData, callback);
-// };
 
 module.exports = { get, add };

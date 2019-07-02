@@ -25,13 +25,16 @@ services:
     ports:
       - '27017:27017'
     volumes:
-      - ./_mongodb:/data/db
-      - ./_mongodb_config:/data/configdb
+      - persistent_mongo:/data/db
+      - persistent_mongo_config:/data/configdb
     networks:
       - db-net
 networks:
   api-net:
   db-net:
     external: true
+volumes:
+  persistent_mongo:
+  persistent_mongo_config:
     # This will return not found if we dont create it
     # via docker network create <network-name>
