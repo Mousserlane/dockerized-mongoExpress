@@ -27,7 +27,8 @@ experienceSchema.method({
 });
 
 experienceSchema.statics = {
-  getExperiences
+  getExperiences,
+  postExperience
 };
 
 // Method Hoisting => To reduce cluttering

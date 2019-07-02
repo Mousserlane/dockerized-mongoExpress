@@ -28,4 +28,35 @@ const biographySchema = mongoose.Schema({
   }
 });
 
+biographySchema.method({
+  // Insert instance methods here
+});
+
+biographySchema.statics = {
+  getBiography,
+  postBiography
+};
+
+function getBiography(limit, type) {
+  return new Promise((resolve, reject) => {
+    Biography.findOne({ type }, (err, response) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(response);
+    }).limit(limit);
+  });
+}
+
+function postBiography(data) {
+  return new Promise((resolve, reject) => {
+    Biography.create(data, (err, response) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(response);
+    });
+  });
+}
+
 Biography = module.exports = mongoose.model('Biography', biographySchema);
