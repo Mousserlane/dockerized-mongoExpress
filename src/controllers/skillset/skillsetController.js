@@ -1,3 +1,4 @@
+// @flow
 const Skillset = require('../../models/skillset');
 const express = require('express');
 const router = express.Router();

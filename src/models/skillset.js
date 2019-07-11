@@ -1,3 +1,4 @@
+// @flow
 const mongoose = require('mongoose');
 
 // Schema Creation
@@ -14,7 +15,7 @@ const skillsetSchema = mongoose.Schema({
   }
 });
 
-skillsetSchema.methods({});
+skillsetSchema.method({});
 
 skillsetSchema.statics = {
   getSkillset,
@@ -43,4 +44,4 @@ function postSkillset(data) {
   });
 }
 
-Skillset = module.exports = mongoose.model('Skillset', skillsetSchema);
+const Skillset = (module.exports = mongoose.model('Skillset', skillsetSchema));

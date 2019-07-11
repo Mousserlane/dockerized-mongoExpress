@@ -1,3 +1,5 @@
+// @flow
+
 const Biography = require('../../models/bio');
 const express = require('express');
 const router = express.Router();

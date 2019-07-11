@@ -1,3 +1,5 @@
+// @flow
+
 const Experiences = require('../../models/experience');
 const express = require('express');
 const router = express.Router();

@@ -1,3 +1,4 @@
+// @flow
 const mongoose = require('mongoose');
 
 // Schema Creation
@@ -45,4 +46,7 @@ function postKnowledge(data) {
   });
 }
 
-Knowledge = module.exports = mongoose.model('Knowledge', knowledgeSchema);
+const Knowledge = (module.exports = mongoose.model(
+  'Knowledge',
+  knowledgeSchema
+));

@@ -1,3 +1,4 @@
+// @flow
 const Knowledge = require('../../models/knowledge');
 const express = require('express');
 const router = express.Router();
