@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 // Schema Creation
 
-const experienceSchema = mongoose.Schema({
+const experienceSchema: Object = mongoose.Schema({
   company_name: {
     type: String,
     required: true
@@ -34,22 +34,26 @@ experienceSchema.statics = {
 
 // Method Hoisting => To reduce cluttering
 // But we should look for better alternatives
-function getExperiences(limit) {
-  return new Promise((resolve, reject) => {
-    Experiences.find((err, obj) => {
-      if (err) {
-        console.log('error:', err);
-        reject(err);
-      } else {
-        resolve(obj);
-      }
-    }).limit(limit);
-  });
+function getExperiences(limit: number): Promise<any> {
+  return new Promise(
+    (resolve: Function, reject: Function): void => {
+      Experiences.find(
+        (err: Object, obj: Object): void => {
+          if (err) {
+            console.log('error:', err);
+            reject(err);
+          } else {
+            resolve(obj);
+          }
+        }
+      ).limit(limit);
+    }
+  );
 }
 
-function postExperience(data) {
-  return new Promise((resolve, reject) => {
-    Experiences.create(data, (err, response) => {
+function postExperience(data: Object): Promise<any> {
+  return new Promise((resolve: Function, reject: Function) => {
+    Experiences.create(data, (err: Object, response: Object) => {
       if (err) {
         reject(err);
       }
